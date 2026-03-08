@@ -15,8 +15,13 @@ function App() {
 
   const computeDistance = async () => {
     if (!start || !goal) {
-      alert("Please select both cities");
+      alert("Select Start And Destination!!!");
       return;
+    }
+
+    if (start === goal) {
+    alert("Silly you!! Start and destination are the same! - But if you really want the answer it is 0");
+    return;
     }
 
     setLoading(true);
@@ -28,8 +33,8 @@ function App() {
       const data = await response.json();
       setDistance(data.distance);
     } catch (error) {
-      console.error("API error:", error);
-      alert("Backend connection failed");
+      console.error("Yikes! Looks Like a API error:", error);
+      alert("Yikes! Looks Like Back-End is DEAD :(");
     }
 
     setLoading(false);
@@ -40,32 +45,26 @@ function App() {
       <div className="container">
         
         <div className="header">
-          <h1 className="title">India Distance Mapper</h1>
-          <p className="subtitle">Find the shortest route between cities</p>
+          <h1 className="title">Indian Cities Distance Mapper - ICDM</h1>
+          <p className="subtitle1">ICDM Stands for Aye Cool Your Damm Mind -  Dun Dun Dun</p>
+          <p className="subtitle">Find the shortest route between cities using Dijkstra algorithm</p>
         </div>
 
         <div className="controls">
           <div className="input-group">
-            <label>Source City</label>
+            <label>Start City</label>
             <div className="select-wrapper">
               <select 
                 value={start} 
                 onChange={(e) => setStart(e.target.value)}
                 disabled={loading}
               >
-                <option value="" disabled>Select Source</option>
+                <option value="" disabled>Select Start City</option>
                 {cities.map(city => (
                   <option key={city} value={city}>{city}</option>
                 ))}
               </select>
             </div>
-          </div>
-
-          <div className="connector">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
           </div>
 
           <div className="input-group">
