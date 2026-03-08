@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
 import heapq
-from fastapi import FastAPI
-
-app = FastAPI()
 
 data = pd.read_csv("data.csv")
 
@@ -22,7 +19,6 @@ for _, row in data.iterrows():
 
     graph[city1].append((city2, distance))
     graph[city2].append((city1, distance))
-
 
 def dijkstra(graph, start, goal):
 
@@ -53,13 +49,9 @@ def dijkstra(graph, start, goal):
     return float('inf')
 
 
-@app.get("/dijkstra")
-def run_dijkstra(start: str, goal: str):
+start = 'Agra'
+goal = 'Hyderabad'
 
-    result = dijkstra(graph, start, goal)
+result = dijkstra(graph, start, goal)
 
-    return {
-        "start": start,
-        "goal": goal,
-        "distance": result
-    }
+print(f"Distance from Start {start} to Goal {goal} is : {distance} Kilo Meters")
