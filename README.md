@@ -181,7 +181,7 @@ npm install
 ### Backend
 
 ```bash
-uvicorn app:app --reload
+python3 -m uvicorn app:app --reload
 ```
 
 The backend runs at `http://127.0.0.1:8000`
@@ -233,3 +233,4 @@ The frontend runs at `http://localhost:5173`
 ## License
 
 This project is intended for educational and research purposes.
+
